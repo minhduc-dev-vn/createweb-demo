@@ -1,13 +1,16 @@
-package murach.email;
+package com.example.createweb.servlet;
 
 import java.io.*;
+
+import com.example.createweb.business.Survey;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
-import murach.business.User;
-import murach.data.UserDB;
+import com.example.createweb.business.User;
 
-public class EmailListServlet extends HttpServlet {
+import java.time.LocalDate;
+
+public class SurveyServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -25,17 +28,25 @@ public class EmailListServlet extends HttpServlet {
         // perform action and set URL to appropriate page
         if (action.equals("join")) {
             url = "/index.html"; // the "join" page
-        }
-        else if (action.equals("add")) {
+        } else if (action.equals("add")) {
 
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
             String email = request.getParameter("email");
+            String dateOfBirthStr = request.getParameter("dateOfBirth");
+            LocalDate dateOfBirth = LocalDate.parse(dateOfBirthStr);
 
-            User user = new User(firstName, lastName, email);
-            UserDB.insert(user);
+            User user = new User(firstName, lastName, email, dateOfBirth);
 
-            request.setAttribute("user", user);
+            String hearSource = request.getParameter("whereHear");
+            boolean receiveAnnouncements = request.getParameter("yes1") != null;
+            boolean receiveSpecialOffers = request.getParameter("yes2") != null;
+
+            String contactMethod = request.getParameter("contact");
+
+            Survey survey = new Survey(user, hearSource, receiveAnnouncements, receiveSpecialOffers, contactMethod);
+
+            request.setAttribute("survey", survey);
             url = "/thanks.jsp";
         }
 

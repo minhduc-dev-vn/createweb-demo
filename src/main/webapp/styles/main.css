@@ -1,12 +1,19 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11pt;
-    margin-left: 2em;
-    margin-right: 2em;
+    margin-top: 2.5em;
+    margin-left: 5em;
+    margin-right: 20em;
 }
 
 h1 {
-    color: teal;
+    font-weight: 800;
+    color: red;
+}
+
+h2 {
+    font-weight: 600;
+    color: rgb(255 0 0 / 0.81);
 }
 
 label {
@@ -15,7 +22,7 @@ label {
     margin-bottom: 0.5em;
 }
 
-input[type="text"], input[type="email"] {
+input[type="text"], input[type="email"], #date {
     width: 15em;
     margin-left: 0.5em;
     margin-bottom: 0.5em;
@@ -25,6 +32,16 @@ br {
     clear: both;
 }
 
-#submit {
-    margin-left: 0.5em;
+.contact-row label {
+    width: 10em;
+}
+
+.contact-row p {
+    margin: 0;
+}
+
+
+input[type="submit"] {
+    clear: both;
+    margin-bottom: 2em;
 }
